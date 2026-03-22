@@ -1,0 +1,5 @@
+{
+  "name": "GetJobz",
+  "description": "A smart AI-powered career platform featuring an ATS-friendly resume builder, AI mock interviews with real-time feedback, and an ATS compatibility checker.",
+  "requestFramePermissions": ["camera", "microphone"]
+}

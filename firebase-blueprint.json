@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user basic information and professional profile.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "industry": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "experience": { "type": "array", "items": { "$ref": "Experience" } },
+        "education": { "type": "array", "items": { "$ref": "Education" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "createdAt"]
+    },
+    "Experience": {
+      "title": "Experience",
+      "description": "Work experience entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "duration": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "Education": {
+      "title": "Education",
+      "description": "Education entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "institution": { "type": "string" },
+        "degree": { "type": "string" },
+        "year": { "type": "string" }
+      }
+    },
+    "InterviewSession": {
+      "title": "Interview Session",
+      "description": "Stores mock interview data and feedback.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string" },
+        "questions": { "type": "array" },
+        "feedback": { "type": "string" },
+        "score": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ATSCheck": {
+      "title": "ATS Check",
+      "description": "Stores ATS compatibility check results.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "jobDescription": { "type": "string" },
+        "resumeText": { "type": "string" },
+        "score": { "type": "number" },
+        "suggestions": { "type": "array", "items": { "type": "string" } },
+        "missingKeywords": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document."
+    },
+    "/interviews/{interviewId}": {
+      "schema": "InterviewSession",
+      "description": "Mock interview session."
+    },
+    "/ats_checks/{checkId}": {
+      "schema": "ATSCheck",
+      "description": "ATS check result."
+    }
+  }
+}
